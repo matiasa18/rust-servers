@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217035955) do
+ActiveRecord::Schema.define(version: 20140217095500) do
 
   create_table "servers", force: true do |t|
     t.string   "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20140217035955) do
   end
 
   add_index "servers", ["user_id"], name: "index_servers_on_user_id"
+
+  create_table "uptime_checks", force: true do |t|
+    t.integer  "server_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "up"
+  end
+
+  add_index "uptime_checks", ["server_id"], name: "index_uptime_checks_on_server_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
