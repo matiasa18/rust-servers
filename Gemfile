@@ -34,6 +34,7 @@ end
 
 gem 'devise'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'mysql2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
