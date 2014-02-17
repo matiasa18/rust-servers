@@ -1,0 +1,26 @@
+<p>
+  <strong>Name:</strong>
+  <%= @server.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @server.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @server.user.username %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @server.votes.count %>
+</p>
+
+<%= link_to 'Vote this server', get_vote_path(@server) %>
+
+<% if is_mine(@server) %>
+  <%= link_to 'Edit', edit_server_path(@server) %> |
+<% end %>
+<%= link_to 'Back', servers_path %>

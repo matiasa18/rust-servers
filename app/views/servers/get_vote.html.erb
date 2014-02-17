@@ -1,0 +1,15 @@
+<h2>You are voting for <%= link_to @server.name, @server %></h2>
+<%= form_tag(post_vote_path(@server), method: :post) do |f| %>
+  <% if @vote.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @vote.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>Please enter the following captcha before proceeding</p>
+  <%= recaptcha_tags %>
+  <%= submit_tag 'Vote' %>
+<% end %>

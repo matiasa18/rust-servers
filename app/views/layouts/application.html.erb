@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body data-no-turbolink>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to 'Top Rust Servers', root_path %></h1>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <% if user_signed_in? %>
+            <li><%= link_to 'New server', new_server_path %></li>
+            <li><%= link_to 'My servers', my_servers_path %></li>
+          <% else %>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Login', new_user_session_path %></li>
+          <% end %>
+          <li><%= link_to 'List all servers', servers_path %></li>
+          <li><%= link_to 'List popular servers', popular_servers_path %></li>
+          <% if user_signed_in? %>
+            <li class="has-dropdown">
+              <a href="#">Welcome <%= current_user.username %></a>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+
+
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
+    
+    <%= yield %>
+
+    
+    
+  </body>
+</html>
