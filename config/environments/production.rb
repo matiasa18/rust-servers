@@ -79,4 +79,10 @@ RustServers::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.default_url_options = { host: 'www.rust-servers.info' }
+  config.action_mailer.smtp_settings = {
+    address:   'smtp.mandrillapp.com',
+    port:      587,
+    user_name: 'matias.a18@gmail.com',
+    password:  'AF6qZTG1BA4r9wGXehML_g'
+  }
 end
